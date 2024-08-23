@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.6rem;
   background-color: var(--white);
   color: var(--black);
@@ -66,6 +66,7 @@ Header
   /* overflow-x: hidden; */
 }
 
+
 /* .product-header {
   position: relative;
   overflow-x: hidden;
@@ -77,10 +78,30 @@ Navigation
 =================
 */
 .navigation {
-  /* position: fixed; */
-  height: 6rem;
+ position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height:6rem;
   line-height: 6rem;
+  background-color:white;
+   border-bottom-color: rgb(218, 212, 212);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  margin-bottom: 60px;
+  z-index: 2;  
+
+
+
  
+}
+.center{
+  
+ padding-top: 50px;
+ 
+}
+.new{
+  font-size: 20px;
 }
 
 
@@ -144,6 +165,7 @@ Hero Area
   height: calc(100vh - 6rem);
   margin: 0 4rem;
   overflow: hidden;
+  padding-top: 80px;
 }
 
 .hero .center {
@@ -179,6 +201,14 @@ Hero Area
   margin-top: 1rem;
   background-color: var(--green);
   color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.hero:hover .center:hover .left:hover .hero-btn:hover, .products-btn:hover{
+  opacity: 0.8;
+  transition: 0.15s;
+
 }
 
 .hero .center .right {
@@ -203,6 +233,10 @@ Hero Area
   padding: 10rem 0 5rem 0;
   overflow: hidden;
 }
+/* .banner{
+  background-image: url(images/raphinha.jpg);
+} */
+
 
 /* New Arrivals */
 .title {
@@ -269,9 +303,33 @@ Hero Area
   margin-top: 1rem;
   background-color: var(--green);
   color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.item-card:hover .add-to-cart:hover{
+  opacity:0.8 ;
 }
 
 .disabled {
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  background-color: var(--black);
+  color: white;
+}
+
+#product-center .disabled {
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  background-color: var(--black);
+  color: white;
+}
+
+#product-featured .disabled {
   display: inline-block;
   padding: 1rem 3rem;
   font-size: 1.6rem;
@@ -290,6 +348,9 @@ Hero Area
   border-radius: 2rem;
   font-size: 1.5rem;
 }
+/* .remove{
+
+} */
 
 .product-info .popular {
   position: absolute;
@@ -313,9 +374,9 @@ Hero Area
 
 .banner .right img {
   position: absolute;
-  bottom: 0;
+  bottom: 12%;
   right: 10%;
-  width: 75rem;
+  width: 65rem;
 }
 
 .banner .trend,
@@ -365,9 +426,10 @@ Hero Area
   background-color: var(--green);
   color: var(--white);
   display: inline-block;
-  border-radius: 1rem;
+  border-radius:  1rem;;
   padding: 1rem 2rem;
 }
+
 
 .contact form div {
   position: relative;
@@ -400,6 +462,9 @@ Hero Area
 .footer {
   padding: 7rem 1rem;
   background-color: var(--green);
+  position: absolute;
+  right: 0;
+  left: 0;
 }
 
 footer .row {
@@ -536,7 +601,14 @@ td .cart-item {
   /* border-bottom: 1px solid #222; */
   display: flex;
   flex-wrap: wrap;
-  margin: 1rem;
+  margin: 2rem;
+}
+
+.cart-item div {
+  padding: 0;
+}
+.cart-item p{
+  margin-bottom: 0.5rem;
 }
 
 td .cart-quantity, td .cart-discount, td .cart-subtotal {
@@ -590,12 +662,46 @@ td img {
   margin-right: 1rem;
 }
 
-.total-price {
+#total-price {
   display: flex;
   align-items: flex-end;
   flex-direction: column;
   margin-top: 2rem;
+  font-weight: 500;
 }
+
+#checkout-btn {
+  color: #f0f0f0;
+  padding: 7px 12px;
+  border: 1px solid #351bde;
+  background-color: #351bde;
+  float: right;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  margin-top: 2rem;
+  /* font-weight: 100; */
+  cursor: pointer;
+}
+#checkout-btn:hover{
+  opacity: 0.7;
+}
+.remove{
+  color: #f0f0f0;
+  padding: 5px 10px;
+  border: 1px solid #d20729;
+  background-color: #d20729;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  /* font-weight: 100; */
+  cursor: pointer;
+  }
+  .remove:hover{
+    opacity: 0.7;
+    transition: 0.15s;
+}
+
+
 
 .total-price table {
   border-top: 3px solid var(--green);
@@ -802,24 +908,24 @@ td img {
 .about-us{
   font-weight: bold;
   font-size: 36px;
-  font-family: 'Jost' sans-serif;
+  font-family: 'roboto' sans-serif;
 
 }
 .member{
   font-size: 25px;
-  font-family: 'Jost' sans-serif;
+  font-family: 'roboto' sans-serif;
 }
 .member-name{
   font-size: 22px;
   color:white;
-  font-family: 'Jost' sans-serif;
+  font-family: 'roboto' sans-serif;
 
 }
 .gmail{
 
   font-size: 18px;
   color: rgb(83, 127, 220);
-  font-family:'Jost' sans-serif ;
+  font-family:'roboto' sans-serif ;
   text-decoration: underline;
 }
 .paragraph{
@@ -833,6 +939,7 @@ td img {
   box-sizing: border-box;
 }
  .background{
+  padding-top: 80px;
   height: 100%;
   margin: 0;
    height: 100%;
