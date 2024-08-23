@@ -61,6 +61,7 @@ const footballShirts = [
   const categoryFilter = document.getElementById('category-filter');
   const paginationControls = document.getElementById('pagination-controls');
   const categories = [...new Set(footballShirts.map(product => product.category))];
+  const purchase = document.querySelector('purchase');
 
   const productsPerPage = 9;
   let currentPage = 1;
@@ -208,7 +209,8 @@ const footballShirts = [
           if(item.discount) {
             discountItem.textContent = `${item.discount}%`;
           }else {
-            discountItem.className = 'no-discount';
+            // discountItem.className = 'no-discount';
+            discountItem.textContent = `0%`;
           }
           cardDiscounts.appendChild(discountItem);
   
@@ -251,16 +253,6 @@ const footballShirts = [
               changeQuantity(productId, -1);
           });
       });
-      // cartItemsContainer.addEventListener('click', (e) => {
-      //     const productId = e.target.getAttribute('data-id');
-      //     if (e.target.classList.contains('remove')) {
-      //         removeFromCart(productId);
-      //     } else if (e.target.classList.contains('increase')) {
-      //         changeQuantity(productId, 1);
-      //     } else if (e.target.classList.contains('decrease')) {
-      //         changeQuantity(productId, -1);
-      //     }
-      // });
 
       updateTotalPrice();
   }
@@ -286,7 +278,7 @@ const footballShirts = [
     const cartItem = document.querySelector(`.cart-item button[data-id="${product.id}"]`).closest('.cart-item');
     const quantityElement = document.querySelector(`.cart-quantity .quantity[data-id="${product.id}"]`);
     const subtotalElement = document.querySelector(`.cart-subtotal .itemTotal[data-id="${product.id}"]`);
-    console.log(quantityElement);
+    // console.log(quantityElement);
     if (quantityElement && subtotalElement) {
       const itemTotalPrice = calculateItemTotal(product);
 
@@ -311,7 +303,7 @@ const footballShirts = [
           const priceAfterDiscount = item.price - (item.price * (item.discount / 100));
           return sum + (priceAfterDiscount * item.quantity);
       }, 0);
-      totalPriceElement.textContent = `Total Price: ${totalPrice}MMK`;
+      totalPriceElement.textContent =  `Total Price: ${totalPrice}MMK`;
       // console.log(totalPriceElement);
       updateCartCount();
   }
