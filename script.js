@@ -54,6 +54,25 @@ const footballShirts = [
 
 ];
 
+  let logout = document.getElementById('logoutButton');
+  let login = document.getElementById('login');
+
+  // Check if user is logged in
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if (!currentUser) {
+      logout.classList.add("hiddenLogout");
+  } else {
+    login.classList.add("hiddenLogin");
+  }
+  console.log(currentUser);
+
+  // logout.js
+  document.getElementById('logoutButton').addEventListener('click', function() {
+    localStorage.removeItem('currentUser');
+    alert('You have been logged out');
+    window.location.href = 'login.html';
+  });
+
 
   const productsContainer = document.getElementById('products');
   const cartCount = document.getElementById('cart-count');
@@ -80,6 +99,10 @@ const footballShirts = [
       paginatedProducts.forEach(product => {
           const productElement = document.createElement('div');
           productElement.className = 'product';
+          let discount = "";
+          if(currentUser) {
+            discount = product.discount > 0 ? `<p class="discount">-${product.discount}%</p>`: '';
+          }
           productElement.innerHTML = `
             <div class="product-thumb">
               <img src="${product.image}" alt="${product.name}">
@@ -87,7 +110,9 @@ const footballShirts = [
             <div class="product-info">
               <span>${product.name}</span>
               <h4>${product.price}MMK</h4>
-              ${product.discount > 0 ? `<p class="discount">-${product.discount}%</p>` : ''}
+              
+              ${discount}
+                
               <button class="products-btn add-to-cart" data-id="${product.id}">Add to Cart</button>
             </div>
           `;
@@ -205,13 +230,19 @@ const footballShirts = [
 
           const discountItem = document.createElement('div');
           discountItem.className = 'cart-discount';
-  
-          if(item.discount) {
-            discountItem.textContent = `${item.discount}%`;
-          }else {
-            // discountItem.className = 'no-discount';
-            discountItem.textContent = `0%`;
+
+          if (!currentUser) {
+            item.discount = 0;
+             discountItem.textContent = `No Discount!`;
+          } else {
+            if(item.discount) {
+              discountItem.textContent = `${item.discount}%`;
+            }else {
+              // discountItem.className = 'no-discount';
+              discountItem.textContent = `0%`;
+            }
           }
+          
           cardDiscounts.appendChild(discountItem);
   
           const quantityItem = document.createElement('div');
@@ -380,6 +411,10 @@ const footballShirts = [
     lastFiveItems.forEach(item => {
         const itemCard = document.createElement('div');
         itemCard.classList.add('item-card');
+        let discount = "";
+          if(currentUser) {
+            discount = item.discount > 0 ? `<p class="discount">-${item.discount}%</p>`: '';
+          }
         itemCard.innerHTML = `
           <div class="product-thumb">
             <img src="${item.image}" alt="${item.name}">
@@ -387,7 +422,7 @@ const footballShirts = [
           <div class="product-info">
             <span>${item.name}</span>
             <h4>Price: ${item.price}MMK</h4>
-            ${item.discount > 0 ? `<p class="discount">-${item.discount}%</p>` : ''}
+            ${discount}
             <button class="add-to-cart" data-id="${item.id}">Add to Cart</button>
           </div>
         `;
